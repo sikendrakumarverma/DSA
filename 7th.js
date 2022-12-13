@@ -70,59 +70,6 @@
 // let nums=[1,2,2,3,4,4,5]
 // console.log(mostFrequentEven(nums))
 
-// 4. Find longest distinct character substring .............................................................
-
-// var longestDupSubstring = function (s) {
-//   let map = new Map()
-//   let subStObj = {}
-//   let start = 0
-//   let end = 0
-//   let maxLen = 0
-//   for (end; end < s.length; end++) {
-//     if (!map[s[end]]) {
-//       map[s[end]] = 1
-//       let subStr = s.slice(start, end + 1)
-//       subStObj[subStr.length] = subStr
-//       maxLen = Math.max(maxLen, subStr.length)
-//     } else {
-//       while (s[start] !== s[end]) {
-//         s = s.replace(s[start], '')
-//         start++;
-//       }
-//       map.delete(map[s[end]])
-//     }
-//   }
-//   return subStObj[maxLen]
-// };
-// let s="banana"
-// console.log(longestDupSubstring(s))
-
-// 5. Find substrings whose sum of ASCII value is divisible by K ..................................................
-
-// function ASCI(str,k){
-//   let sum=0
-//   let count=0
-//   if(str.length<k) return 0
-//   for(let i=0;i<k;i++){
-//     sum+= str[i].charCodeAt()
-//   }
-//   if(sum % k ==0){
-//     count++;
-//   }
-//   for(let i=k;i<str.length;i++){
-//     sum-=str[i-k].charCodeAt()
-//     sum+=str[i].charCodeAt()
-
-//     if(sum % k ==0){
-//       count++;
-//     }
-//   }
-//   return count
-// }
-// let str="bcgabc"
-// let k=3
-// console.log(ASCI(str,k))
-
 // 6. Find missing number in an array ,number should be contain in array 0 to upto array.length ..............................
 
 // var missingNumber = function (nums) {

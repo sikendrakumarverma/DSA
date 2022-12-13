@@ -47,3 +47,63 @@ var findAnagrams = function (s, p) {
     return arr;
 };
 console.log(findAnagrams(s,p))
+
+// 2. Add Binary .........................................................
+
+let a="11";    // o/p= "100"
+let b="1"
+var addBinary = function(a, b) {
+    let carry=0;
+    let i=0;
+    let alen=a.length;
+    let blen=b.length;
+    let result="";
+    while(i<alen || i<blen || carry!==0 ){
+    let x=0
+  if(i<alen && a[alen-1-i]=="1" ) x=1;
+  let y=0;
+  if(i<blen && b[blen-1-i]=="1") y=1;
+  let sum= x+y+carry
+  result=sum%2+result
+   carry=Math.floor(sum/2)
+  i++;
+  }
+ return result;
+};
+console.log(addBinary(a,b))
+
+// 3. Self Dividing Numbers .................................................................................
+
+let left=1
+let right=22
+var selfDividingNumbers = function(left, right) {
+    let arr=[];
+    // let div=true;
+    // while(left<=right){
+    //     let str=""+left;
+    //     let i=0;
+    //     while(i<str.length){
+    //         let num= parseInt(str[i]);
+    //         if(left % num !==0){
+    //             div = false;
+    //         }
+    //         i++;
+    //     }
+    //     if(div==true) arr.push(left)
+    //     left++;
+    // }
+
+    for(let i=left; i<=right; i++) {
+        let num = i;
+        while(num) {
+            let x = num%10;
+            if(x == 0) break;
+            if(i % x != 0) break;
+            num=Math.floor(num / 10);
+        }
+        if(num == 0) arr.push(i);
+    }
+    return arr;
+};
+console.log(selfDividingNumbers(left,right))
+

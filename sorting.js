@@ -209,7 +209,27 @@ console.log(insertionSort(arr3));
 
 //TC: O(n^2) //TC: Best TC : Omega (n) -> already sorted array //SC: O(1)
 
-// 4. Quick Sort ......................................................................................
+// 4. Selection Sort.....................................................................
+
+let arr0=[20,12,53,3]
+function selectionSort(arr){
+let selectIn;
+for(let i=0;i<arr.length;i++){
+    selectIn=i;
+    for(let j=i+1;j<arr.length;j++){
+        if(arr[j]<arr[selectIn]){
+            selectIn=j
+        }
+    }
+    let temp=arr[selectIn]
+    arr[selectIn]=arr[i]
+    arr[i]=temp
+}
+return arr
+}
+console.log(selectionSort(arr0))
+
+// 5. Quick Sort ......................................................................................
 
 let arr4 = [5, 2, 7, 2, 9, 6, 2, 11, 4];
 
@@ -249,7 +269,7 @@ let low=0;
 let high=arr4.length-1
 console.log(quickSort(arr4, low, high));  // O(n^2)=> TC ,O(n)=> SC (not use any auxilary data stucture but call stack)
 
-// 5. Counting sort Or RELATIVE SORT.................................................................................
+// 6. Counting sort Or RELATIVE SORT.................................................................................
       // Applicable for fix array length and fix array element range.
 
 let ar1 = [2,3,1,3,2,4,6,7,9,2,19]; 
@@ -280,6 +300,8 @@ const relativeSort = (arr1,arr2) => {
     return arr1;
 }
 console.log(relativeSort(ar1, ar2));         //TC: O(n+m)  //SC: O(1)
+
+
 
 
 
