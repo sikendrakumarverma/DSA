@@ -23,11 +23,11 @@ headNode.next.next = new LinkedListNode(30);
 
 const reverseFunc = (headNode) => {
     
-    if(headNode == null || headNode.next == null)
+    if(headNode == null || headNode.next == null) // stop rec call stack
         return headNode;
     
-    let newHead = reverseFunc(headNode.next);
-    headNode.next.next = headNode;
+    let newHead = reverseFunc(headNode.next); // head i.e, newhead=w and fall back 4 to 3 head  Now new head 3
+    headNode.next.next = headNode;// here 3(head)ka next 4 or 4 ka next null hai or usme 3 ko dal do new head value i.e,Assign
     headNode.next = null;
     
     return newHead;

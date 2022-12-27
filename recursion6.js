@@ -1,52 +1,4 @@
-// 1.  Find All Anagrams in a String...............................................................
-
-let s = "cbaebabacd"
-let p = "abc"
-
-var findAnagrams = function (s, p) {
-
-    function checkAnagram(s, t) {
-        if (s.length !== t.length) return false;
-        let obj = {}
-        for (let i = 0; i < s.length; i++) {
-            if (!obj[s[i]]) {
-                obj[s[i]] = 1;
-            } else {
-                obj[s[i]]++;
-            }
-        }
-        for (let i = 0; i < t.length; i++) {
-            if (!obj[t[i]]) {
-                return false;
-            } else {
-                obj[t[i]]--;
-            }
-            if (obj[t[i]] == 0) {  // remove key 
-                delete obj[t[i]];
-            }
-        }
-        return true;
-    };
-
-    let str = ""
-    for (let i = 0; i < p.length; i++) {
-        str += s[i];
-    }
-    //console.log(str)
-    let arr = []
-    let ind = 0;
-    if (checkAnagram(str, p)) arr.push(0)
-    for (let i = p.length; i < s.length; i++) {
-        str += s[i];
-        //console.log(str)
-        str = str.slice(1)
-        ind++;
-        //console.log(str)
-        if (checkAnagram(str, p)) arr.push(ind);
-    }
-    return arr;
-};
-console.log(findAnagrams(s,p))
+// 1.
 
 // 2. Add Binary .........................................................
 
@@ -106,4 +58,55 @@ var selfDividingNumbers = function(left, right) {
     return arr;
 };
 console.log(selfDividingNumbers(left,right))
+
+// 4. Reverse a integer .......................................................
+
+let x = -123456789103
+var reverse = function (x) {
+    // Approach- 1.) By dividing and multiplying
+    // 2.) By converting its into string or array 
+
+    // 1. Approach 
+    let num = 0;
+    function reverseNum(x) {
+        if (x == 0) return num;
+        let lastDigit = x % 10;
+        x = Math.floor(x / 10)
+        num = num * 10 + lastDigit
+        return reverseNum(x)
+    }
+
+    if (x >= 0) {
+
+        let num1 = reverseNum(x)
+        return num1
+    } else {   // for negative integer 
+        x2 = Math.abs(x)
+        // function reverseNum2(x2){
+        //     if(x2==0) return num;
+        //     let lastDigit=x2%10;
+        //     x2=Math.floor(x2/10)
+        //     num=num*10 +lastDigit
+        //     return reverseNum2(x2)
+        //     }
+        let num2 = reverseNum(x2)
+        return num2 * -1
+
+    }
+}
+console.log(reverse(x))
+
+// Algo Used 
+
+// 1. we take int 
+// 2. we divide by 10 for calculating reminder
+// 3. we store  reminder in a variable i.e, last digit
+// 4. we calculate divider by dividing 10 and reassign int from divider
+// 5. call recursion with new int i.e, decreasing int
+// 6. we give base case of recursion for stop recursion loop 
+// 7. we store reverse int in a variable
+// 8. we also multiply by 10 for increasing int because we dividing by 10 for decreasing int
+
+// 5. 
+
 

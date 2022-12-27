@@ -84,52 +84,52 @@
 
 // OR
 // nums.sort((a, b) => a-b);
-    // for(var i=0; i < nums.length; i++){
-    //     if( i !== nums[i]) return i;
-    // }
-    // return nums.length;
+// for(var i=0; i < nums.length; i++){
+//     if( i !== nums[i]) return i;
+// }
+// return nums.length;
 
 // 7. Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] 
-      // such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+// such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
 
-var threeSum = function(nums) {
-    let i=0
-	let result=[]
+var threeSum = function (nums) {
+    let i = 0
+    let result = []
     // sort numbers in ascending order to use two pointer approach
-	nums.sort((a,b)=>a-b)
+    nums.sort((a, b) => a - b)
 
-	while(i<nums.length-2){
-			let start = i+1
-			let end = nums.length-1
-            // since we need total sum as 0 positive will not be solution
-			if (nums[i] > 0) break
-			while(start < end){
-				if(nums[i]+nums[start]+nums[end] === 0){
-					// if found valid triplet then push in result
-					result.push([nums[i],nums[start],nums[end]])
+    while (i < nums.length - 2) {
+        let start = i + 1
+        let end = nums.length - 1
+        // since we need total sum as 0 positive will not be solution
+        if (nums[i] > 0) break
+        while (start < end) {
+            if (nums[i] + nums[start] + nums[end] === 0) {
+                // if found valid triplet then push in result
+                result.push([nums[i], nums[start], nums[end]])
 
-					//after the using the element,we will move ahead of all of its duplicates
-					while( nums[start] === nums[start+1]) start++
-					while( nums[end] === nums[end-1]) end--
-                    start++
-                    end--
-				}
-				else if(nums[i]+nums[start]+nums[end]<0){
-					 start+=1;
-				 }
-				else{
-					end-=1;
-				}
-			}
-		 //to avoid duplicacy 
-		while(i<nums.length-3 && nums[i]===nums[i+1]) {          
-				i+=1;
-		}
-		i+=1
-		}
-	return result
+                //after the using the element,we will move ahead of all of its duplicates
+                while (nums[start] === nums[start + 1]) start++
+                while (nums[end] === nums[end - 1]) end--
+                start++
+                end--
+            }
+            else if (nums[i] + nums[start] + nums[end] < 0) {
+                start += 1;
+            }
+            else {
+                end -= 1;
+            }
+        }
+        //to avoid duplicacy 
+        while (i < nums.length - 3 && nums[i] === nums[i + 1]) {
+            i += 1;
+        }
+        i += 1
+    }
+    return result
 };
-let nums = [-1,0,1,2,-1,-4]
+let nums = [-1, 0, 1, 2, -1, -4]
 console.log(threeSum(nums))
 
 // 8. Given an array of integers arr and an integer k, return the number of unique k-diff pairs in the array.
@@ -175,24 +175,86 @@ let arr0 = [1, 1, 1, 2, 2]
 let k = 0
 console.log(findPairs(arr0, k))
 
-// 9. 
+// 9. Given two strings needle and haystack, return the index of the first occurrence ..............................
+//of needle in haystack, or -1 if needle is not part of haystack
+
+var strStr = function (haystack, needle) {
 
 
-// var longestPalindrome = function (s) {
-//   let obj = {}
-//   let subSt=""
-//   if (s.length == 1) { return s }
-//   let j=s.length
-//   for (let i = 0; i < s.length; i++) {
-//     //for (let j = i+1; j < s.length; j++) {
-//        subSt = s.slice(i, j)
-//       console.log(subSt)
-//       let subS1 = subSt.split("").reverse().join("")
-//       if (subSt == subS1) {
-//         return subSt
-//       }
-//     }
-//   //}
-// };
-// let s = "babad"
-// console.log(longestPalindrome(s))
+    let s1 = haystack.length;
+    let s2 = needle.length
+    let j = 0;
+    for (let i = 0; i < s1; i++) {
+        if (haystack[i] == needle[j]) {
+            while (j < s2) {
+                //console.log(i,j)
+                if (haystack[i + j] == needle[j]) {
+                    j++;
+                } else {
+                    break;
+                }
+                if (j == s2) {
+                    return i;
+                }
+            }
+
+        }
+        j = 0;
+    }
+    return -1;
+};
+let s1 = "mississippi"
+let s2 = "issip"
+console.log(strStr(s1, s2))
+
+// 10. Given an integer array nums and an integer k, return the k most........................................ 
+//frequent elements. You may return the answer in any order.
+
+var topKFrequent = function (nums, k) {
+
+    let map = new Map()
+
+    for (let n of nums) {
+        if (!map.has(n)) {
+            map.set(n, 1)
+        }
+        else {
+            map.set(n, map.get(n) + 1)
+        }
+    }
+    let array = Array.from(map)  // convert map into array
+    //console.log(array)
+    array.sort((a, b) => b[1] - a[1])  // sort in most frequent(desc) form
+    let result = []
+    //console.log(array)
+    for (let i = 0; i < k; i++) {//we push k element of array as per max freq
+        result.push(array[i][0])
+    }
+    return result
+};
+let arr = [1, 1, 1, 2, 2, 3];
+let k9 = 2;
+console.log(topKFrequent(arr, k9))
+
+// 11. Given a string s, return the longest palindromic substring in s................................................
+
+var longestPalindrome = function (s) {
+    let l = 0, r = 0;
+    for (let i = 0; i < s.length; i++) {
+        let left = i, right = i;
+
+        while (s[left] === s[right + 1]) right++;
+
+        while (s[left - 1] && s[left - 1] === s[right + 1]) {
+            left--;
+            right++;
+        }
+        if (right - left > r - l) {
+            [r, l] = [right, left]
+        }
+    }
+    return s.substring(l, r + 1);
+};
+let s = "babad"
+console.log(longestPalindrome(s))
+

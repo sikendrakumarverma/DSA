@@ -245,4 +245,71 @@ const func = (array) => {
 }
 console.log(func(a));  //TC : O(logn)   //SC: O(1)
 
+// 7. Given three arrays sorted in increasing order. Find the elements that are common in all three arrays.
 
+let arr1 = [1, 5, 10, 20, 40, 80], arr2 = [6, 7, 20, 80, 100], arr3 = [3, 4, 15, 20, 30, 70, 80, 120]
+let n1 = 6, n2 = 5, n3 = 8
+function commonElements(arr1, arr2, arr3, n1, n2, n3) {
+
+    let i = 0; j = 0; k = 0;        // TC => O(n1+n2+n3), SC => O(1)
+    let result = [];
+    while (i < n1 && j < n2 && k < arr3.length) {
+        if (arr1[i] == arr2[j] && arr2[j] == arr3[k]) {
+            result.push(arr1[i]);
+            i++;
+            j++;
+            k++;
+        }
+        else if (arr1[i] < arr2[j]) {
+            i++;
+        }
+        else if (arr2[j] < arr3[k]) {
+            j++;
+        }
+        else {
+            k++;
+        }
+    }
+    return [...new Set(result)];
+
+    //     let low2 = 0, high2 = n2 - 1;       // TC => O(nlogn), SC => O(1)
+    //     let low3 = 0, high3 = n3 - 1
+    //     let mid2, mid3;
+    //     let arr = []
+    //     for (let i = 0; i < n1; i++) {
+    //         let search = arr1[i]
+    //         let find = false;
+    //         while (low2 <= high2) {
+    //             mid2 = Math.floor(low2 + (high2 - low2) / 2)
+    //             if (arr2[mid2] == search) {
+    //                 find = true;
+    //                 break;
+    //             }
+    //             if (arr2[mid2] < search) {
+    //                 low2 = mid2 + 1;
+    //             } else {
+    //                 high2 = mid2 - 1
+    //             }
+    //         }
+    //         // Re-assign the value after one times compliting
+    //         low2 = 0, high2 = n2 - 1;
+    //         if (find == true) {
+    //             while (low3 <= high3) {
+    //                 mid3 = Math.floor(low3 + (high3 - low3) / 2)
+    //                 if (arr3[mid3] == search) {
+    //                     arr.push(arr1[i])
+    //                     break;
+    //                 }
+    //                 if (arr3[mid3] < search) {
+    //                     low3 = mid3 + 1;
+    //                 } else {
+    //                     high3 = mid3 - 1
+    //                 }
+    //             }
+    //         }
+    //         find = false;
+    //         low3 = 0, high3 = n3 - 1
+    //     }
+    //     return arr
+}
+console.log(commonElements(arr1, arr2, arr3, n1, n2, n3))

@@ -1,4 +1,4 @@
-// 1. Given an integer array of only 0 and 1, segregate them.
+// 1. Given an integer array of only 0 and 1, segregate them.......................................................
 //all 0 should be on left side and all 1 should be on right side
 
 // Aproach
@@ -52,7 +52,7 @@
 // // SC : O(1)
 
 
-// 2. given 0,1,2 , segregate them
+// 2. given 0,1,2 , segregate them ........................................................................
 //Dutch National Flag problem
 
 // let arr1 = [1,0, 1, 1, 2, 1, 0, 2, 1, 0];
