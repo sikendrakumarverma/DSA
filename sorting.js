@@ -301,7 +301,29 @@ const relativeSort = (arr1,arr2) => {
 }
 console.log(relativeSort(ar1, ar2));         //TC: O(n+m)  //SC: O(1)
 
+// 7. Cyclic Sort For fix range [0,n],[1,n]
 
-
-
-
+let nums=[3,0,1,4]
+var missingNumber = function(nums) {
+       let n = nums.length;
+     
+           //cyclic sort : [0,n] ,[1,n]
+           for(let i=0;i<n;){
+               let correctIndex = nums[i]-1; // if [1,n] than a[i]-1
+               if(nums[correctIndex] != nums[i]){ // swap and sitting correct pos
+                       let temp = nums[i];
+                       nums[i] = nums[correctIndex];
+                       nums[correctIndex] = temp;
+                }else
+                    i++;
+           }
+            console.log(nums) // [0,1,undefined,3,4]
+           //finding missing number
+           for(let i=0; i< n;i++){
+                   if(nums[i] != i)
+                       return i;
+           }
+     
+        return n;  // if already sorted
+    };
+console.log(missingNumber(nums))

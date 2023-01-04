@@ -1,5 +1,4 @@
-// 1. A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all 
-//non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
+// 1. A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
    //Given a string s, return true if it is a palindrome, or false otherwise.........................................
 
 let s1 = "A man, a plan, a canal: Panama"
@@ -32,7 +31,7 @@ var isPalindrome = function (s) {
 console.log(isPalindrome(s1))
 
 // 2.  Valid Palindrome II ........................................................................................
-//Given a string s, return true if the s can be palindrome after deleting at most one character from it.
+      //Given a string s, return true if the s can be palindrome after deleting at most one character from it.
 
 let s = "cbbcc"  //abca,  abc
 var validPalindrome = function (s) {

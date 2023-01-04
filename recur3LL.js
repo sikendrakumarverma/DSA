@@ -15,7 +15,8 @@ class LinkedListNode {
 
 let headNode = new LinkedListNode(10);
 headNode.next = new LinkedListNode(20);
-headNode.next.next = new LinkedListNode(30);
+headNode.next = new LinkedListNode(23);
+//headNode.next.next = new LinkedListNode(30);
 //headNode.next.next.next = new LinkedListNode(40)
  console.log(headNode.next.next);
 
@@ -36,7 +37,94 @@ const reverseFunc = (headNode) => {
 // console.log("Reversed LinkedList");
 // console.log(reverseFunc(headNode));
 
-// 3. Remove Node OR Remove Linked List Elements .................................................................
+// OR By Loop
+function solution(a,arr) {
+    //Write your solution here
+      class linkList{
+          constructor(value){
+              this.value=value;
+              this.next=null
+          }
+      }
+      let head= new linkList(arr[0])
+      let node=head;
+     for(let i=1;i<a;i++){
+         node.next= new linkList(arr[i])
+         node=node.next;
+     }
+      if(head.value==0) return "no element present"
+          // 1. Reverse LL by recursion
+         // 2. Reverse LL by loop
+      let prev=head;
+      let currentNode=head.next
+      while(currentNode){
+          let nextNode=currentNode.next;
+          currentNode.next=prev;
+          prev=currentNode;
+          currentNode=nextNode
+      }
+      head.next=null;
+     
+      let newHead=prev;  // reversed LL
+      let res=[];
+      while(newHead){
+          res.push(newHead.value);
+          newHead=newHead.next
+      }
+      return res.join(" ")
+  }
+  let arr=[10,20,30,40,50]
+  let a=arr.length
+  console.log(solution(a,arr))
+
+  // 3. Delete last node in singly linked list.........................................................................
+
+  function solution(a,head) {
+    //Write your solution here
+      let list =linkList(head)
+      let headNode =list
+      let res=[]
+      if(headNode.next==null) return "no element present"
+      while(headNode && headNode.next!=null){
+          if(headNode.next.next==null){
+              headNode.next=null
+          }
+          res.push(headNode.value)
+          headNode=headNode.next
+      }
+      return res.join(" ")
+  }
+
+  // 4. Delete head node in singly linked list.......................................................................
+
+  function solution(a,head) {
+    //Write your solution here
+      class linkList{
+          constructor(value){
+              this.value=value
+              this.next=null
+          }
+      }
+      let headNode=new linkList(head[0])
+      let node= headNode
+      for(let i=1;i<a;i++){
+          node.next=new linkList(head[i])
+          node=node.next
+      }
+      let current= headNode.next
+      let nextNode=current;
+      head.next=null
+      if(current==null) return "no element present"
+      let res=[]
+      while(nextNode){
+          res.push(nextNode.value)
+          nextNode=nextNode.next
+      }
+      return res.join(" ")
+  }
+  
+
+// 5. Remove Node OR Remove Linked List Elements .................................................................
 
 var removeElements = function(head, val) {
    
@@ -60,7 +148,7 @@ let head=headNode
 console.log(removeElements(head,val))
 
 
-// 4. leetcode Add 2 non- negative linkedList where digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
+// 6. leetcode Add 2 non- negative linkedList where digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
 
 // class LinkedListNode {
 //     // let arr = [];

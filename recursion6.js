@@ -107,6 +107,34 @@ console.log(reverse(x))
 // 7. we store reverse int in a variable
 // 8. we also multiply by 10 for increasing int because we dividing by 10 for decreasing int
 
-// 5. 
+// 5. check parenthesis valid or not.....................................................................................
+
+var isValid = function(s) {
+    if (s.length % 2 !== 0 ) return false;
+     let str = s.trim().split('');
+     let temp = [];
+      //console.log(temp,str)
+     for(let i of str){
+         if(i == '(' || i=='{' || i=='['){
+             temp.push(i);
+            
+         }
+         if(i==')'){
+             if(temp.pop() != '(') return false;
+         }
+         if(i=='}'){
+             if(temp.pop() != '{') return false;
+         }
+         if(i==']'){
+             if(temp.pop() != '[') return false;
+         }
+     };
+     return temp.length > 0 ? false: true;
+ 
+ };
+ let s="]("
+ console.log(isValid(s))
+
+
 
 
