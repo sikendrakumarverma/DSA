@@ -1,3 +1,95 @@
+// 2517. Maximum Tastiness of Candy Basket............................................................................
+//You are given an array of positive integers price where price[i] denotes the price of the ith candy and a positive integer k.
+//The store sells baskets of k distinct candies. The tastiness of a candy basket is the smallest absolute difference of 
+//the prices of any two candies in the basket.
+//Return the maximum tastiness of a candy basket.
+
+ let price = [13,5,1,8,21,2], k = 3 //Output: 8
+var maximumTastiness = function(price, k) {
+    // Approach :!.) Binary search: Because we know the max testiness and min testiness by given constraints.
+    
+        price=price.sort((a,b)=>{return a-b})
+         let n=price.length;
+           
+        function isPossible(mid,price ,k){ // calculate diff of kth candies is equal to target or not
+            let prev=price[0]; // min no.
+            let count=1;
+        for (let i = 1; i < n; i++) {
+            if(price[i]- prev >= mid){
+                count++;
+                prev=price[i];
+            }
+           if(count>=k) return 1;// true;
+         }
+             
+            return 0; // false;
+        }
+        
+        let ans=0;
+        let low = 0;
+        let high = price[n-1]-price[0] ; // no. of maxTestiness; // 21-1=20
+        while (low <= high) {
+            let mid = low + Math.floor((high - low) / 2); // find probability of being testiness
+    
+            let possibility = isPossible(mid, price,k);
+    
+            if (possibility) {  // check approximate testiness is exist or not
+                ans=mid;
+                low = mid + 1;// increase testiness because we have to return max
+            }
+            else
+                high = mid - 1;// move in left half of price
+        }
+    
+        return ans;
+    };
+    console.log(maximumTastiness(price,k));
+
+//  875. Koko Eating Bananas ....................................................
+
+let piles = [3, 6, 7, 11], h = 8  //  o/p = 4
+var minEatingSpeed = function (piles, h) {
+    // Approach:- 1.) Binary Search: Beacause we have given min. no. of      banana in a basket(piles) 1 and max also(max ele. of piles(11,30))
+    // piles is no. basket and basket is no. of bananas
+    // we also given no. of basket(piles) <= h so if we start eating max no. of bananas of piles(basket) speed than we can eat comletilly within h.
+    // But we have find min. no. of bananas eating speed that eat all within h. 
+    // [1.......11]so we cosider approx(mid) and compare completilly eat or not
+
+    function calculateTimeTaken(speed, piles) {
+        let time = 0;
+        for (let j = 0; j < piles.length; j++) {
+            // 3/mid ,6/mid ..... ceil(1.2,2.7...= 2,3)
+            time += Math.ceil(piles[j] / speed);
+        }
+        return time;
+    }
+
+    let maxPileSize = 0; // no. of bananas
+    let minSpeed = 0;
+    for (let i = 0; i < piles.length; i++) {
+        if (piles[i] > maxPileSize)
+            maxPileSize = piles[i];
+    }   //speed range. [1......maxPileSize].  banana/hour
+
+    let low = 1;
+    let high = maxPileSize; // 11,30,30
+    while (low <= high) {
+        let mid = low + Math.floor((high - low) / 2);
+
+        let timeTaken = calculateTimeTaken(mid, piles);
+
+        if (timeTaken <= h) {  // check we eat anymore min speed of eating
+            minSpeed = mid;
+            high = mid - 1;  // decrease eating speed rate
+        }
+        else
+            low = mid + 1;  // // increase eating speed rate
+    }
+
+    return minSpeed;
+};
+console.log(minEatingSpeed(piles, h));
+
 // 1. You are given an integer array heights representing the current order that the students are standing in. 
 //Each heights[i] is the height of the ith student in line (0-indexed)..................................................
 //Return the number of indices where heights[i] != expected[i].

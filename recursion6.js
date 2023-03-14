@@ -135,6 +135,48 @@ var isValid = function(s) {
  let s="]("
  console.log(isValid(s))
 
+ // 6. We have given an array which contains array of string and a integer m. 
+ //We have to find out sum of characters of ascii value of array[i], array[i+1], up-to array. length. 
+ //In this format array[i][0]^m * array[i][1]^m * array[i][2]^m* .....up to array[i].length. 
+ //And finally returned sum is odd or even 
+ //No use of buil-in function.
+
+ let s6=["abc","defg"] ,m=2;
+ function solve(s,m) {
+    // fill this function
+    let checkString = new Array(s.length)
+    let temp;
+    let isEven = false;
+    for(let i = 0; i < s.length;i++){
+        isEven = false
+        for(let j = 0; j < s[i].length; j++){
+            temp = s[i].charCodeAt(j)
+            if(temp % 2 === 0){
+                isEven = true
+            }
+        }
+        checkString[i] = isEven
+    }
+    
+    let oddCount = 0
+    for(let i = 0; i < s.length; i++){
+        if(!checkString[i]){
+            oddCount++
+        }
+    }
+    
+    return oddCount%2==0?"EVEN" : "ODD"
+
+}
+console.log(solve(s6,m));
+
+// tricky based question 
+
+for (var i = 0; i < 3; i++) {
+  setTimeout(function() { console.log(i); }, 1000);
+}
+// o/p=> when var 3,3,3 
+//       when let 0,1,2
 
 
 

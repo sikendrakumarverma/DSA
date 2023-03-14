@@ -80,6 +80,34 @@ console.log(lengthOfLongestSubstring(str1))
 // let s="banana"
 // console.log(longestDupSubstring(s))
 
+// 4. Given a binary array nums and an integer k, return the maximum number of consecutive 1's in the array if you can 
+ //flip at most k 0's.
+
+ let nums4 = [1,1,1,0,0,0,1,1,1,1,0], k4 = 2 // Output: 6 Explanation: [1,1,1,0,0,1,1,1,1,1,1]
+
+var longestOnes = function(nums, k) {
+    let map = new Map();
+
+   let maxLength = 0;
+   let left =0;
+   for(let right = 0;right< nums.length; right++){  
+       let element = nums[right];
+       map.set(element, (map.get(element) || 0) +1);// count freq
+
+       //condition check (At most k o's in a substring than valid substring)
+       // else decrease substring size from start(increase left)
+       while(map.get(0) > k && left<=right){
+           map.set(nums[left], map.get(nums[left]) -1);
+           left++;
+       }
+       maxLength = Math.max(maxLength, right-left +1);
+   }
+
+   return maxLength; //TC: O(n) //SC: O(2) ~ O(1)
+
+};
+console.log(longestOnes(nums4,k4))
+
 // 5. Find substrings whose sum of ASCII value is divisible by K ..................................................
 
 // function ASCI(str,k){

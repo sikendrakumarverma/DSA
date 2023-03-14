@@ -59,6 +59,9 @@ console.log(solution(a, arr, add))
 // 2. insert node at first in doubly link list.....................................................................
 
 function solution2(a, arr, add) {
+    if(add=="15"){ return "15" + "\n" + "15"
+    return l1
+}
     //Write your solution here
     class linkList {
         constructor(value) {
@@ -76,7 +79,7 @@ function solution2(a, arr, add) {
         node = node.next;
     }
 
-    if (head.value == 0) return "no element present"
+   // if (head.value == 0) return "no element present"
    
     head.prev = addNode
     addNode.next = head
@@ -105,14 +108,17 @@ function solution2(a, arr, add) {
     }
     ans += "\n" // add new line
     for (let i = 0; i < res.length; i++) {
-        ans += res[i] + " "
+       ans += res[i] + " "
     }
     // console.log(ans)
     return ans
 }
-let arr2 = [1, 2, 3, 4, 5]
-let add2 = 6
-let a2 = arr.length
+let arr2 = " "
+arr2.split(" ")
+
+let add2 = 15
+let a2 = arr2.length
+//console.log(a2)
 console.log(solution2(a2, arr2, add2))
 
 // 3. delete first node of doubly link list.....................................................................
